@@ -1,17 +1,14 @@
-// 
-// Simple example showing how to set the RTC alarm pin to wake up the Arduino.
-// This is a different mode to the alarm clock, which wakes at a particular time.
-// This mode is a repeating periodic time, waking the Arduino at fixed intervals.
-// Note: this example doesn't wake up the RPi. For that add:
-//
-//     SleepyPi.enablePiPower(true);  
-//
-// after arduino wakeup. 
-// 
-// To test on the RPi without power cycling and using the Arduino IDE
-// to view the debug messages, fit the Power Jumper or enable
-// self-power
-// 
+/* 
+ *  SleepyPi_FW - Firmware developed for a SleepyPi2 (http://spellfoundry.com/products/sleepy-pi-2/)
+ *  To be used with a Raspberry Pi Model A+ for the Open Source Beehives Project (http://opensourcebeehives.net/)
+ *  Wakes up every 15 minutes, waits for data to be taken and controls IR LEDs for the camera
+ *  
+ *  Teddy Lowe, October 2016
+ *  CC BY-NC-SA
+ *  
+ *  Based on code from the University of Kent (http://www.instructables.com/id/ARUPi-A-Low-Cost-Automated-Recording-Unit-for-Soun/)
+ *  
+ */
 
 // **** INCLUDES *****
 #include "SleepyPi2.h"
