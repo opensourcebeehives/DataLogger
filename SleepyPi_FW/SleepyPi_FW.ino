@@ -26,13 +26,14 @@ const int LED_PIN = 13;
 bool PI_WAKING_UP_FROM_SLEEP = true;
 // Counter for number of times to check before switching off
 int deadCounter = 0;
+int videoCounter = 0;
 
 // Globals
 // ++++++++++++++++++++ Change me ++++++++++++++++++
 // .. Setup the Periodic Timer
 // .. use either eTB_SECOND or eTB_MINUTE or eTB_HOUR
 eTIMER_TIMEBASE  PeriodicTimer_Timebase     = eTB_MINUTE;   // e.g. Timebase set to seconds
-uint8_t          PeriodicTimer_Value        = 7;           // Timer Interval in units of Timebase e.g 10 seconds
+uint8_t          PeriodicTimer_Value        = 8;           // Timer Interval in units of Timebase e.g 10 seconds
 // ++++++++++++++++++++ End Change me ++++++++++++++++++
 
 
@@ -61,24 +62,33 @@ void setup()
   delay(200);
   digitalWrite(LED_PIN,LOW);   // Switch off LED
 
+  // It will sit in this loop until the dead counter gets too high
   while(1)
   {
+    // If just finished the interrupt, wake up the pi
     if (PI_WAKING_UP_FROM_SLEEP){
       wakePiUp();
     }else{
-      if(SleepyPi.checkPiStatus(false)){
+      if(SleepyPi.checkPiStatus(false)){  // If the pi is awake, reset the dead counter
         deadCounter = 0;
-        digitalWrite(LED_PIN, HIGH);
-        Serial.println("Pi awake");
-      }else{
+        videoCounter++;
+        //digitalWrite(LED_PIN, HIGH);
+        //Serial.println("Pi awake");
+        Serial.println(videoCounter);
+        
+      }else{                              // If the pi is not detected, count up on the dead counter
         digitalWrite(LED_PIN, LOW);
+        videoCounter = 0;
         deadCounter++;
         Serial.println(deadCounter);
       }
     }
-    if (deadCounter >= 16){
+    if (deadCounter >= 6){ // If the pi still isn't detected, it hasn't switched on in time or is totally shut down, so kill it
       deadCounter = 0;
       break;
+    }
+    if (videoCounter == 3){
+      SleepyPi.enableExtPower(false);
     }
     delay(5000);
   }
@@ -117,17 +127,24 @@ void loop()
       }else{
         if(SleepyPi.checkPiStatus(false)){  // If the pi is awake, reset the dead counter
           deadCounter = 0;
-          digitalWrite(LED_PIN, HIGH);
-          Serial.println("Pi awake");
+          videoCounter++;
+          //digitalWrite(LED_PIN, HIGH);
+          //Serial.println("Pi awake");
+          Serial.println(videoCounter);
+          
         }else{                              // If the pi is not detected, count up on the dead counter
           digitalWrite(LED_PIN, LOW);
+          videoCounter = 0;
           deadCounter++;
           Serial.println(deadCounter);
         }
       }
-      if (deadCounter >= 20){ // If the pi still isn't detected, it hasn't switched on in time or is totally shut down, so kill it
+      if (deadCounter >= 6){ // If the pi still isn't detected, it hasn't switched on in time or is totally shut down, so kill it
         deadCounter = 0;
         break;
+      }
+      if (videoCounter == 3){
+        SleepyPi.enableExtPower(false);
       }
       delay(5000);
     }
