@@ -30,7 +30,7 @@ int videoCounter = 0;
 // .. Setup the Periodic Timer
 // .. use either eTB_SECOND or eTB_MINUTE or eTB_HOUR
 eTIMER_TIMEBASE  PeriodicTimer_Timebase     = eTB_MINUTE;   // e.g. Timebase set to seconds
-uint8_t          PeriodicTimer_Value        = 8;           // Timer Interval in units of Timebase e.g 10 seconds
+uint8_t          PeriodicTimer_Value        = 9;           // Timer Interval in units of Timebase e.g 10 seconds
 // ++++++++++++++++++++ End Change me ++++++++++++++++++
 
 
@@ -84,7 +84,7 @@ void setup()
       deadCounter = 0;
       break;
     }
-    if (videoCounter == 3){
+    if (videoCounter == 4){
       SleepyPi.enableExtPower(false);
     }
     delay(5000);
@@ -140,7 +140,7 @@ void loop()
         deadCounter = 0;
         break;
       }
-      if (videoCounter == 3){
+      if (videoCounter == 4){
         SleepyPi.enableExtPower(false);
       }
       delay(5000);
