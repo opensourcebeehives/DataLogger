@@ -1,3 +1,10 @@
+# Batch video encoding script for .h264 files
+# Place in folder full of files and run, encoded files will be put in 
+# the encoded folder. Duplicates will be ignored. Can also be used with 
+# ffmpeg instead of avconv simply by replacing the command
+#
+# Teddy Lowe, October 2016
+
 #!/bin/bash
 
 if [ -d "encoded" ]; then
