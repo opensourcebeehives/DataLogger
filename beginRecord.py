@@ -10,7 +10,7 @@ import os, time
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(25, GPIO.OUT)
 GPIO.output(25, GPIO.HIGH)
-os.system("/home/pi/OSBHLogger/AVrecord.sh")
+os.system("bash /home/pi/OSBHLogger/AVrecord.sh")
 GPIO.output(25, GPIO.LOW)
 GPIO.cleanup()
 print ("Shutting down")

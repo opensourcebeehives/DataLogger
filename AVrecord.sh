@@ -4,7 +4,7 @@
 #
 # Teddy Lowe, October 2016
 
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Time now
 #now="$(date +'%y%m%d%H%M%S')"
@@ -51,8 +51,8 @@ echo audio
 arecord -f dat -r 44100 -c 1 -D plughw:1,0 -d ${audio_length_s} /home/pi/OSBHLogger/temp/${_LOGGERID}_${_NUMBER}_a.wav
 
 # Increment the number and write to the info.txt file
-_NUMBER=$_NUMBER+1
-sed -i "2s/.*/$_NUMBER/" /home/pi/OSBHLogger/info.txt
+_NUMBER=${_NUMBER}+1
+sed -i "2s/.*/${_NUMBER}/" /home/pi/OSBHLogger/info.txt
 
 # Check to see if a USB is plugged in
 if grep -qs '/media/usb' /proc/mounts; then

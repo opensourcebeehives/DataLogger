@@ -8,7 +8,7 @@ if [ -d /media/usb ]; then
 	echo "USB directory exists, skipping"
 else
 	echo "Creating USB directory"
-	mkdir /media/usb
+	sudo mkdir /media/usb
 fi
 sudo mount /dev/sda1 /media/usb
 python /home/pi/OSBHLogger/beginRecord.py
