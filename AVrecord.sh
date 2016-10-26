@@ -72,7 +72,7 @@ fi
 
 # If not full then move the files to the external media and delete the temp directory
 echo "moving files"
-mv /home/pi/OSBHLogger/temp/* /media/usb/
+sudo mv /home/pi/OSBHLogger/temp/* /media/usb/
 rmdir /home/pi/OSBHLogger/temp
 
 echo fin
