@@ -26,7 +26,7 @@ These libraries must be installed for the code to compile. [See here](https://ww
 * [Low Power](https://github.com/rocketscream/Low-Power)
 
 ###Additional Files
-* [Raspberry Pi Disk Image](https://www.dropbox.com/s/cj2wm1wae3lfy33/AKERLogger_2016_10_25_PRODUCTION.img?dl=0) - *This file is nearly 8GB!*
+* [Raspberry Pi Disk Image](https://www.dropbox.com/s/lzpy4lqns04bf4h/AKERLogger_2016_10_26_PRODUCTION.img?dl=0) - *This file is nearly 8GB!*
 * [Arduino Code](https://github.com/opensourcebeehives/OSBHLogger/tree/master/SleepyPi_FW)
 
 ----
