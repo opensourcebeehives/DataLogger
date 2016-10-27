@@ -14,7 +14,7 @@ Click to view the [Bill of Materials](google sheets link)
 Before starting to build your own OSBHLogger, first make sure you have downloaded all software and files needed. Some files are quite large and may take some time to complete.
 
 ###Software
-* [Arduino IDE](https://www.arduino.cc/en/Main/OldSoftwareReleases#previous) - * only tested on version 1.6.5, if you are using another version your mileage may vary *
+* [Arduino IDE](https://www.arduino.cc/en/Main/OldSoftwareReleases#previous) - *only tested on version 1.6.5, if you are using another version your mileage may vary*
 * [Win32 Disk Imager](https://sourceforge.net/projects/win32diskimager/) - *Windows only, for Mac or Linux instructions will be provided below*
 
 ###Arduino Libraries
@@ -37,7 +37,7 @@ To write the disk image for the Raspberry Pi, first ensure that you have install
 
 Once that is done, plug your microSD card into your computer and run Win32 Disk Imager as an administrator. You will be presented with a window like the one below.
 
-`Image 01`
+![Win32DiskImager](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/01_win32.png)
 
 Click the folder icon and navigate to the disk image you downloaded earlier. Next, click the drive letter drop down menu to the right and choose the letter that represents your microSD card. 
 
@@ -51,7 +51,7 @@ Once you have the correct drive selected, click "Write" to begin writing to the 
 
 First, plug in your memory stick to an open USB port on your computer. Next, open up "This PC" or "My Computer" depending on the version of Windows you are running. Right click on the memory stick you just inserted and choose "Format"
 
-`Image 02`
+![Format](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/02_format.PNG)
 
 In the window that pops up, pick "FAT32" from the "File system" dropdown menu and choose "Default allocation size" from the "Allocation unit size" menu. Put whatever you want the drive to be named in the "Volume label" field, ensure "Quick Format" is checked, and click start.
 
@@ -67,25 +67,25 @@ Before moving forward, make sure that you have downloaded and installed the Ardu
 
 First, the Sleepy Pi 2 needs to be assembled. This involves soldering 2 sets of headers and a screw terminal for power, and inserting the stackable headers, standoffs, and backup battery. The following pictures show the locations of the solder joints and a fully assembled Sleepy Pi 2.
 
-`Image 03_1`
+![Solder1](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/03_solder1.jpg)
 
-`Image 03_2`
+![Solder2](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/03_solder2.jpg)
 
-`Image 03_3`
+![Solder3](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/03_solder3.jpg)
 
 Next, you will need to plug in the Sleepy Pi Programmer to the Sleepy Pi 2 as shown in the image below, and plug the other end into a spare USB port on your computer. Then plug in a micro USB plug into the Sleepy Pi to provide power.
 
-`Image 04`
+![SleepyPiProgrammer](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/04_sleepypiprogrammer.jpg)
 
 Open up the Arduino code that you downloaded earlier, called SleepyPi_FW. To check that your libraries installed correctly, click the blue check button in the upper left corner of the window. If you get any errors, make sure everything is where it should be and try again.
 
 When you are ready to upload to the board, click "Tools > Board" and select the "Arduino Fio".
 
-`Image 05`
+![Tools>Board](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/05_tools-board.png)
 
 With the Arduino Fio selected, click "Tools > Port" and select whichever COM port is available. If the Port selection is grayed out, ensure that the Sleepy Pi Programmer is plugged in correctly and the Sleepy Pi is powered.
 
-`Image 06`
+![Tools>Port](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/06_tools-port.png)
 
 With this ready, click the blue arrow in the top left corner to upload the code. Your Sleepy Pi is ready to go.
 
@@ -96,45 +96,49 @@ Before the camera gets encased by LEDs and has extra wires running to it, we nee
 ###Set Up Camera
 To begin doing this, we will first need to plug in the camera and the Sleepy Pi. This is also a good time to change out the short camera cable that it comes with for the longer one needed to reach inside the hive.
 
-`Image 07`
+![Thread Sleepy Pi](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/07_thread-sleepypi.jpg)
 
-`Image 08`
+![Plug RPi](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/08_plug-rpi.jpg)
 
-`Image 09`
+![Plug Camera](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/09_plug-cam.jpg)
 
 Once the camera and the Sleepy Pi are plugged in, plug the microSD card into the Raspberry Pi.
 
 **BEFORE** powering on anything, make sure you connect the hardware jumper together using the provided connector as shown in the picture below. If you forget to do this, the Sleepy Pi will shut down the Raspberry Pi while you are working on it!
 
-`Image 10`
+![Hardware Jumper On](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/10_hwjump-ON.jpg)
 
 Next, plug in a keyboard and an HDMI capable monitor, then plug in the power on the Sleepy Pi. This will switch on the Raspberry Pi.
 
 ###Focus Camera
 To allow for the camera to be focused, you need to firmly but gently break the glue that is used to stop the lens from spinning. I found that a pair of needle nose pliers worked perfectly for this job. Once the glue is broken, the lens can spin more freely and can be focused to different distances.
 
-`Image 11`
+![Needle Nose on Lens](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/11_noselens.jpg)
 
 Now, using a tape measure, an object of your choice, and the clear camera case, you can take pictures of the object at different distances while rotating the lens between pictures to try to focus the camera correctly. To take a picture, use the command `raspistill -o test.jpg`. This will show a preview window on the screen while the picture is taken and creates an image with the name `test.jpg`. I found that it takes about a three-quarter turn to the left to focus at 2cm, however each camera had to be fine tuned.
 
-`Image 12`
+![Test Picture](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/12_focus_5cm_ball_5cm.jpeg)
 
-`Image 13`
+This is an object at 5cm used to focus the camera to 5cm.
+
+![Test Focus](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/13_focustest.jpg)
 
 ###Add IR LEDs
 With the camera focused, you are now free to add the IR LEDs to the camera case. Since we are using a 12V supply, 5 LEDs in series with a 100 Ohm and a 47 Ohm resistor will give the desired brightness. These LEDs can be soldered together then stuck to the case using thick double sided tape.
 
-`Image 14`
+![Case with LEDs](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/14_casewithled.jpg)
+
+This is an older model case that used 7 IR LEDs.
 
 Next, run wires to provide power from the LEDs on the case to the headers right next to the camera cable on the Sleepy Pi. These headers are controlled by the Sleepy Pi so that the lights switch off when video recording is completed. The header closest to the edge of the board is `VExt` or a direct connection to the external battery pack, and the header right next to it is ground.
 
-`Image 15`
+![LED Power Headers](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/15_powerheaders.jpg)
 
 ----
 ##Build Power Switch
 The last piece of hardware needed is the power switch. This switch can be soldered between the screw terminal and the battery pack as shown below. The ground wire will still need to be attached to the screw terminal and an extra wire will need to be added between the screw terminal and the power switch.
 
-`Image 16`
+![Power Switch](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/16_powerswitch.jpg)
 
 ----
 ##Change ID and Prepare for Logging
@@ -166,11 +170,11 @@ Finally hit `Crtl+X` then `y` then `Enter` to save and exit the editor. Then typ
 
 Move the hardware jumper into the **off** position as shown below:
 
-`Image 17`
+![Hardware Jumper Off](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/17_hwjump-OFF.jpg)
 
 Your OSBHLogger is nearly ready to go! Plug in the USB hub with your memory stick and sound card and remove the keyboard and monitor. The next time the power is switched on to the Sleepy Pi, the program will run and the Raspberry Pi will take data. Attach the batteries and computer to the inside of a case of your choice and put it in a beehive!
 
-`Image 18`
+![Beehive](https://github.com/opensourcebeehives/OSBHLogger/blob/master/documentation/images/18_hive.jpg)
 
 ----
 ##Known Issues
