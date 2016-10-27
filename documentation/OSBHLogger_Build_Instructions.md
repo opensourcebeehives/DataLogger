@@ -7,7 +7,7 @@ for source files
 
 ----
 ##Hardware
-Click to view the [Bill of Materials](google sheets link)
+Click to view the [Bill of Materials](https://docs.google.com/spreadsheets/d/1nI3witlPTMcbUZzZZHIfNlv-dO-o5Rbs2B_zqUWT8EA/edit?usp=sharing)
 
 ----
 ##Downloads
