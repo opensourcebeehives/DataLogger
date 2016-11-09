@@ -2,18 +2,20 @@
 # Handles recording and naming of video and audio files, 
 # along with ensuring there is enough space to record
 #
-# Teddy Lowe, October 2016
+# Teddy Lowe, November 2016
 
 #!/usr/bin/env bash
 
 # Time now
 #now="$(date +'%y%m%d%H%M%S')"
 
-# Read in the datalogger ID
+# Read in the datalogger ID and location
 _LOGGERID=$(sed '1q;d' /home/pi/OSBHLogger/info.txt)
 
+_LOCATION=$(sed '2q;d' /home/pi/OSBHLogger/info.txt)
+
 # Check the increment number, read in as an integer
-declare -i _NUMBER=$(sed '2q;d' /home/pi/OSBHLogger/info.txt)
+declare -i _NUMBER=$(sed '3q;d' /home/pi/OSBHLogger/info.txt)
 
 ## audio options
 audio_length_s=300
@@ -43,16 +45,16 @@ fi
 # This records video
 echo video
 
-raspivid -t $video_length_ms -o /home/pi/OSBHLogger/temp/${_LOGGERID}_${_NUMBER}_v.h264
+raspivid -t $video_length_ms -o /home/pi/OSBHLogger/temp/${_LOGGERID}-${_NUMBER}-${_LOCATION}.h264
 
 # This records audio
 echo audio
 
-arecord -f dat -r 44100 -c 1 -D plughw:1,0 -d ${audio_length_s} /home/pi/OSBHLogger/temp/${_LOGGERID}_${_NUMBER}_a.wav
+arecord -f dat -r 44100 -c 1 -D plughw:1,0 -d ${audio_length_s} /home/pi/OSBHLogger/temp/${_LOGGERID}-${_NUMBER}-${_LOCATION}.wav
 
 # Increment the number and write to the info.txt file
 _NUMBER=${_NUMBER}+1
-sed -i "2s/.*/${_NUMBER}/" /home/pi/OSBHLogger/info.txt
+sed -i "3s/.*/${_NUMBER}/" /home/pi/OSBHLogger/info.txt
 
 # Check to see if a USB is plugged in
 if grep -qs '/media/usb' /proc/mounts; then
