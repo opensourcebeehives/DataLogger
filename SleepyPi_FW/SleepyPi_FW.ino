@@ -118,6 +118,10 @@ void loop()
     // It will sit in this loop until the dead counter gets too high
     while(1)
     {
+      //
+      //  TO ADD: check voltage of batteries on pin A6, if too low, flash LED and switch back off
+      //
+      
       // If just finished the interrupt, wake up the pi
       if (PI_WAKING_UP_FROM_SLEEP){
         wakePiUp();
