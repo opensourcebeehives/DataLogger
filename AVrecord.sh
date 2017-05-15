@@ -2,7 +2,7 @@
 # Handles recording and naming of video and audio files, 
 # along with ensuring there is enough space to record
 #
-# Teddy Lowe, November 2016
+# Teddy Lowe, April 2017
 
 #!/usr/bin/env bash
 
@@ -21,14 +21,14 @@ declare -i _NUMBER=$(sed '3q;d' /home/pi/OSBHLogger/info.txt)
 audio_length_s=300
 
 ## video options
-video_length_ms=10000
+#video_length_ms=10000
 #video_bitrate =
 
 # run
 # this displays disk space used as a percent, then checks if it is over 95%
 used=$(df /home/pi/OSBHLogger/ | awk '{ print $5 }' | tail -n 1 | sed 's/%//')
 
-if [ $used -ge 95 ]; then
+if [ $used -ge 97 ]; then
 	echo "${_NUMBER} startup disk almost full, no data will be recorded" >> /home/pi/OSBHLogger/errors.txt
 	exit 3
 fi
@@ -43,9 +43,9 @@ else
 fi
 
 # This records video
-echo video
+#echo video
 
-raspivid -t $video_length_ms -o /home/pi/OSBHLogger/temp/${_LOGGERID}-${_NUMBER}-${_LOCATION}.h264
+#raspivid -t $video_length_ms -o /home/pi/OSBHLogger/temp/${_LOGGERID}-${_NUMBER}-${_LOCATION}.h264
 
 # This records audio
 echo audio

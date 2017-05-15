@@ -2,7 +2,7 @@
 # Mounts the USB drive - ensure it is the only one plugged in!
 # Teddy Lowe, October 2016
 
-#!/usr/bin/env bash
+#!/bin/bash
 
 if [ -d /media/usb ]; then
 	echo "USB directory exists, skipping"
