@@ -50,11 +50,11 @@ void setup()
 
   // initialize serial communication: In Arduino IDE use "Serial Monitor"
   Serial.begin(9600);
-  Serial.println("Starting, but I'm going to go to sleep for a while...");
+  Serial.println("Starting...");
   delay(50);
 
   // Initialize the RTC
-  SleepyPi.rtcInit(false);
+  SleepyPi.rtcInit(true);
 
   delay(200);
   digitalWrite(LED_PIN,LOW);   // Switch off LED
@@ -84,9 +84,9 @@ void setup()
       deadCounter = 0;
       break;
     }
-    if (videoCounter == 4){
-      SleepyPi.enableExtPower(false);
-    }
+    //if (videoCounter == 4){
+    //  SleepyPi.enableExtPower(false);
+    //}
     delay(5000);
   }
 }
@@ -94,7 +94,7 @@ void setup()
 void loop() 
 {
     SleepyPi.enablePiPower(false);
-    SleepyPi.enableExtPower(false);
+    //SleepyPi.enableExtPower(false);
   
     SleepyPi.rtcClearInterrupts();
 
@@ -144,9 +144,9 @@ void loop()
         deadCounter = 0;
         break;
       }
-      if (videoCounter == 4){
-        SleepyPi.enableExtPower(false);
-      }
+      //if (videoCounter == 4){
+      //  SleepyPi.enableExtPower(false);
+      //}
       delay(5000);
     }
 
@@ -165,7 +165,7 @@ void wakePiUp() {
   SleepyPi.enablePiPower(true);
   delay(3000);
   // Uncomment if we want to use EXT power for things
-  SleepyPi.enableExtPower(true);
+  //SleepyPi.enableExtPower(true);
   digitalWrite(LED_PIN, HIGH);
   PI_WAKING_UP_FROM_SLEEP = false;
 }
