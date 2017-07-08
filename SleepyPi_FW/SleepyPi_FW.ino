@@ -21,6 +21,8 @@
 const int LED_PIN = 13;
 // Pi status
 bool PI_WAKING_UP_FROM_SLEEP = true;
+// button press
+bool buttonPressed = false;
 // Counter for number of times to check before switching off
 int deadCounter = 0;
 int videoCounter = 0;
@@ -32,9 +34,14 @@ int deadValue = 156;
 // .. Setup the Periodic Timer
 // .. use either eTB_SECOND or eTB_MINUTE or eTB_HOUR
 eTIMER_TIMEBASE  PeriodicTimer_Timebase     = eTB_MINUTE;   // e.g. Timebase set to seconds
-uint8_t          PeriodicTimer_Value        = 9;           // Timer Interval in units of Timebase e.g 10 seconds
+uint8_t          PeriodicTimer_Value        = 13;           // Timer Interval in units of Timebase e.g 10 seconds
 // ++++++++++++++++++++ End Change me ++++++++++++++++++
 
+void button_isr()
+{
+    // A handler for the Button interrupt.
+    buttonPressed = true;
+}
 
 void alarm_isr()
 {
@@ -175,10 +182,21 @@ void piHandler(){
     flashLED(6, 500);
     return;
   }
+
+  // Check if the button was pressed
+  if (buttonPressed){
+    buttonPressed = false;
+    PI_WAKING_UP_FROM_SLEEP = true;
+  }
+  
   // It will sit in this loop until the dead counter gets too high
   Serial.println("Main loop");
   while(1)
   {      
+    if (buttonPressed){
+      buttonPressed = false;
+      SleepyPi.piShutdown();
+    } 
     // If just finished the interrupt, wake up the pi
     if (PI_WAKING_UP_FROM_SLEEP){
       Serial.println("Waking up pi");
