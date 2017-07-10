@@ -24,15 +24,15 @@ bool PI_WAKING_UP_FROM_SLEEP = true;
 // Counter for number of times to check before switching off
 int deadCounter = 0;
 int videoCounter = 0;
-// Battery Voltage Dead Value, where 1 = 0.06V, in this case 156 = 9.4V
-int deadValue = 156;
+// Battery Voltage Dead Value, where 1 = 0.06V, in this case 193 = 11.6V
+int deadValue = 193;
 
 // Globals
 // ++++++++++++++++++++ Change me ++++++++++++++++++
 // .. Setup the Periodic Timer
 // .. use either eTB_SECOND or eTB_MINUTE or eTB_HOUR
 eTIMER_TIMEBASE  PeriodicTimer_Timebase     = eTB_MINUTE;   // e.g. Timebase set to seconds
-uint8_t          PeriodicTimer_Value        = 9;           // Timer Interval in units of Timebase e.g 10 seconds
+uint8_t          PeriodicTimer_Value        = 13;           // Timer Interval in units of Timebase e.g 10 seconds
 // ++++++++++++++++++++ End Change me ++++++++++++++++++
 
 
